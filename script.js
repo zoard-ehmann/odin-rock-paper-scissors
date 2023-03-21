@@ -1,5 +1,7 @@
 "use strict";
 
+const ROUNDS = 5;
+
 function getComputerChoice() {
   const computerChoice = Math.floor(Math.random() * 3) + 1;
 
@@ -43,5 +45,14 @@ function playARound(computerSelection, userSelection) {
     return `Win: ${displayResult(computerSelection, userSelection)}`;
   } else {
     return `Lose: ${displayResult(computerSelection, userSelection)}`;
+  }
+}
+
+function game() {
+  for (let i = 0; i < ROUNDS; i++) {
+    const userChoice = getUserChoice();
+    const computerChoice = getComputerChoice();
+
+    console.log(playARound(computerChoice, userChoice));
   }
 }
