@@ -14,14 +14,16 @@ function getComputerChoice() {
 }
 
 function getUserChoice() {
-  let userChoice;
-  while (
-    userChoice != "rock" ||
-    userChoice != "paper" ||
-    userChoice != "scissors"
-  ) {
-    userChoice = prompt(
+  while (true) {
+    let userChoice = prompt(
       "Enter your choice: rock, paper, scissors"
     ).toLowerCase();
+    if (
+      userChoice === "rock" ||
+      userChoice === "paper" ||
+      userChoice === "scissors"
+    ) {
+      return userChoice;
+    }
   }
 }
