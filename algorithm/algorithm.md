@@ -40,12 +40,12 @@
 
 ### Pseudocode
 
-- Initialize score tracking (wins / all)
-- Start game loop
+- Initialize score tracking with 5 rounds
+- (Re)start game
   - Prompt for a user input, validate it, and store it in a variable
   - Generate a random choice for the computer and store it in a variable
   - Check the user input against the computer chosen value
   - Determine the result from player perspective: win, lose or tie
     - Inform the user about the result
     - Update the score tracker
-  - Prompt the player for replay
+- Prompt the player for replay
