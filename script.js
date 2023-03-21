@@ -12,3 +12,16 @@ function getComputerChoice() {
       return "scissors";
   }
 }
+
+function getUserChoice() {
+  let userChoice;
+  while (
+    userChoice != "rock" ||
+    userChoice != "paper" ||
+    userChoice != "scissors"
+  ) {
+    userChoice = prompt(
+      "Enter your choice: rock, paper, scissors"
+    ).toLowerCase();
+  }
+}
