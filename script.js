@@ -27,3 +27,21 @@ function getUserChoice() {
     }
   }
 }
+
+function displayResult(computerSelection, userSelection) {
+  return `computer chose ${computerSelection}, user chose ${userSelection}`;
+}
+
+function playARound(computerSelection, userSelection) {
+  if (computerSelection === userSelection) {
+    return `Tie: ${displayResult(computerSelection, userSelection)}`;
+  } else if (
+    (userSelection === "rock" && computerSelection === "scissors") ||
+    (userSelection === "paper" && computerSelection === "rock") ||
+    (userSelection === "scissors" && computerSelection === "paper")
+  ) {
+    return `Win: ${displayResult(computerSelection, userSelection)}`;
+  } else {
+    return `Lose: ${displayResult(computerSelection, userSelection)}`;
+  }
+}
