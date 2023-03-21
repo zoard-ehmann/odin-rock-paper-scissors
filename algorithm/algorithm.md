@@ -18,11 +18,11 @@
 #### Inputs
 
 - What inputs the program will have?
-  - A number that will refer to the corresponding chosen symbol: _Number_
+  - A string that will select the chosen symbol: _String_
   - Replay value: _Boolean_
 - Will the program get the inputs from the user or elsewhere?
-  - The program will get the number input(s) from the user in each turn until the game finishes.
-  - The program will get the replay value from the user after the game finishes.
+  - The program will get the string input from the user in each turn.
+  - The program will get the replay value from the user after declaring the winner.
 
 #### Outputs
 
@@ -41,11 +41,11 @@
 ### Pseudocode
 
 - Initialize score tracking (wins / all)
-- Map numbers between 1-3 to the different symbols
-- Prompt for a user input (number between 1-3) and store it in a variable
-- Generate a random number (between 1-3) for the computer and store it in a variable
-- Check the user input against the computer chosen value
-- Determine the result from player perspective: win, lose or tie
-  - Inform the user about the result
-  - Update the score tracker
-- Prompt the player for replay
+- Start game loop
+  - Prompt for a user input, validate it, and store it in a variable
+  - Generate a random choice for the computer and store it in a variable
+  - Check the user input against the computer chosen value
+  - Determine the result from player perspective: win, lose or tie
+    - Inform the user about the result
+    - Update the score tracker
+  - Prompt the player for replay
