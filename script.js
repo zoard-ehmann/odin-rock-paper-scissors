@@ -32,43 +32,61 @@ function getUserChoice() {
 
 function displayResult(result, computerSelection, userSelection) {
   console.log(
-    `${result}: computer chose ${computerSelection}, user chose ${userSelection}`
+    `${result}:\nPlayer - ${userSelection}\nComputer - ${computerSelection}`
   );
 }
 
 function playARound(computerSelection, userSelection) {
   if (computerSelection === userSelection) {
     displayResult("Tie", computerSelection, userSelection);
-    return 0;
+    return;
   } else if (
     (userSelection === "rock" && computerSelection === "scissors") ||
     (userSelection === "paper" && computerSelection === "rock") ||
     (userSelection === "scissors" && computerSelection === "paper")
   ) {
     displayResult("Win", computerSelection, userSelection);
-    return 1;
+    return true;
   } else {
     displayResult("Lose", computerSelection, userSelection);
-    return -1;
+    return false;
   }
+}
+
+function showScore(round, userScore, computerScore) {
+  console.log(`Round ${round}`);
+  console.table({
+    Player: userScore,
+    Computer: computerScore,
+  });
 }
 
 function game() {
   let userScore = 0;
+  let computerScore = 0;
 
   for (let i = 0; i < ROUNDS; i++) {
     const userChoice = getUserChoice();
     const computerChoice = getComputerChoice();
 
-    let result = playARound(computerChoice, userChoice);
-    userScore += result;
-  }
+    const win = playARound(computerChoice, userChoice);
 
-  if (userScore > 0) {
-    return `Congrats, you've won!`;
-  } else if (userScore < 0) {
-    return `Too bad, you lose...`;
-  } else {
-    return `It's a tie.`;
+    if (win) {
+      userScore++;
+    } else if (win === false) {
+      computerScore++;
+    }
+
+    showScore(i + 1, userScore, computerScore);
+
+    if (userScore === 3 || computerScore === 3 || i === ROUNDS - 1) {
+      if (userScore > computerScore) {
+        return `Congrats, you've won!`;
+      } else if (userScore < computerScore) {
+        return `Too bad, you lose...`;
+      } else {
+        return `It's a tie.`;
+      }
+    }
   }
 }
