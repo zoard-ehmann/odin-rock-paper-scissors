@@ -38,10 +38,6 @@
   4. Determine the result
   5. Inform the user about the result
 
-##### Flowchart
-
-![Algorithm flowchart](algorithm.drawio.svg)
-
 ### Pseudocode
 
 - Start the main loop
@@ -57,3 +53,7 @@
         - Show the score table
     - Inform the player about the overall result
   - Prompt the player for replay
+
+### Flowchart
+
+![Algorithm flowchart](algorithm.drawio.png)
