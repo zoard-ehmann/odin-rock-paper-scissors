@@ -66,6 +66,7 @@ function game() {
   let computerScore = 0;
 
   for (let i = 0; i < ROUNDS; i++) {
+    let currentRound = i + 1;
     const userChoice = getUserChoice();
     const computerChoice = getComputerChoice();
 
@@ -77,9 +78,9 @@ function game() {
       computerScore++;
     }
 
-    showScore(i + 1, userScore, computerScore);
+    showScore(currentRound, userScore, computerScore);
 
-    if (userScore === 3 || computerScore === 3 || i === ROUNDS - 1) {
+    if (userScore === 3 || computerScore === 3 || currentRound === ROUNDS) {
       if (userScore > computerScore) {
         return `Congrats, you've won!`;
       } else if (userScore < computerScore) {
@@ -89,4 +90,10 @@ function game() {
       }
     }
   }
+}
+
+let keepGoing = true;
+while (keepGoing) {
+  console.log(game());
+  if (!confirm("Would you like to play again?")) keepGoing = false;
 }
