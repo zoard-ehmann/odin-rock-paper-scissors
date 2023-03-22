@@ -38,14 +38,22 @@
   4. Determine the result
   5. Inform the user about the result
 
+##### Flowchart
+
+![Algorithm flowchart](algorithm.drawio.svg)
+
 ### Pseudocode
 
-- Initialize score tracking with 5 rounds
-- (Re)start game
-  - Prompt for a user input, validate it, and store it in a variable
-  - Generate a random choice for the computer and store it in a variable
-  - Check the user input against the computer chosen value
-  - Determine the result from player perspective: win, lose or tie
-    - Inform the user about the result
-    - Update the score tracker
-- Prompt the player for replay
+- Start the main loop
+  - Start the game
+    - Initialize score tracking for player and computer
+    - Start a loop that continues for either: 5 rounds OR 3 scores (for player or computer)
+      - Prompt for a player input, validate it, and store it in a variable
+      - Generate a random choice for the computer and store it in a variable
+      - Check the player input against the computer chosen value
+      - Determine the result from player perspective: win, lose or tie
+        - Inform the player about the result
+        - Update the scores
+        - Show the score table
+    - Inform the player about the overall result
+  - Prompt the player for replay
