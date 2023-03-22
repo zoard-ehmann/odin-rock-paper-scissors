@@ -83,11 +83,11 @@ function game() {
 
     if (userScore === 3 || computerScore === 3 || currentRound === ROUNDS) {
       if (userScore > computerScore) {
-        return `Congrats, you've won!`;
+        return "Congrats, you've won!";
       } else if (userScore < computerScore) {
-        return `Too bad, you lose...`;
+        return "Too bad, you lose...";
       } else {
-        return `It's a tie.`;
+        return "It's a tie.";
       }
     }
   }
