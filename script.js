@@ -70,6 +70,7 @@ function game() {
     const userChoice = getUserChoice();
     const computerChoice = getComputerChoice();
 
+    console.clear();
     const win = playARound(computerChoice, userChoice);
 
     if (win) {
@@ -94,6 +95,7 @@ function game() {
 
 let keepGoing = true;
 while (keepGoing) {
+  console.clear();
   console.log(game());
   if (!confirm("Would you like to play again?")) keepGoing = false;
 }
