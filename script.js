@@ -36,6 +36,14 @@ function showResult(result, computerSelection, userSelection) {
   );
 }
 
+function showScore(round, userScore, computerScore) {
+  console.log(`Round ${round}`);
+  console.table({
+    Player: userScore,
+    Computer: computerScore,
+  });
+}
+
 function playARound(computerSelection, userSelection) {
   if (computerSelection === userSelection) {
     showResult("Tie", computerSelection, userSelection);
@@ -51,14 +59,6 @@ function playARound(computerSelection, userSelection) {
     showResult("Lose", computerSelection, userSelection);
     return false;
   }
-}
-
-function showScore(round, userScore, computerScore) {
-  console.log(`Round ${round}`);
-  console.table({
-    Player: userScore,
-    Computer: computerScore,
-  });
 }
 
 function game() {
