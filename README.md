@@ -14,7 +14,7 @@ Check the [algorithm](algorithm/algorithm.md) page for further information about
 
 ## Visuals
 
-**Console version**
+### Console version
 
 ![Console version](screenshots/console_version.png)
 
