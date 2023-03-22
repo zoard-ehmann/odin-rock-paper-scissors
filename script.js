@@ -30,7 +30,7 @@ function getUserChoice() {
   }
 }
 
-function displayResult(result, computerSelection, userSelection) {
+function showResult(result, computerSelection, userSelection) {
   console.log(
     `${result}:\nPlayer - ${userSelection}\nComputer - ${computerSelection}`
   );
@@ -38,17 +38,17 @@ function displayResult(result, computerSelection, userSelection) {
 
 function playARound(computerSelection, userSelection) {
   if (computerSelection === userSelection) {
-    displayResult("Tie", computerSelection, userSelection);
+    showResult("Tie", computerSelection, userSelection);
     return;
   } else if (
     (userSelection === "rock" && computerSelection === "scissors") ||
     (userSelection === "paper" && computerSelection === "rock") ||
     (userSelection === "scissors" && computerSelection === "paper")
   ) {
-    displayResult("Win", computerSelection, userSelection);
+    showResult("Win", computerSelection, userSelection);
     return true;
   } else {
-    displayResult("Lose", computerSelection, userSelection);
+    showResult("Lose", computerSelection, userSelection);
     return false;
   }
 }
@@ -71,11 +71,11 @@ function game() {
     const computerChoice = getComputerChoice();
 
     console.clear();
-    const win = playARound(computerChoice, userChoice);
+    const userWonRound = playARound(computerChoice, userChoice);
 
-    if (win) {
+    if (userWonRound) {
       userScore++;
-    } else if (win === false) {
+    } else if (userWonRound === false) {
       computerScore++;
     }
 
