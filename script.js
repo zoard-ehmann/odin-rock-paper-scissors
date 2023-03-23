@@ -93,9 +93,8 @@ function game() {
   }
 }
 
-let keepGoing = true;
-while (keepGoing) {
+while (true) {
   console.clear();
   console.log(game());
-  if (!confirm("Would you like to play again?")) keepGoing = false;
+  if (!confirm("Would you like to play again?")) break;
 }
