@@ -46,17 +46,14 @@ function showScore(round, userScore, computerScore) {
 
 function playARound(computerSelection, userSelection) {
   if (computerSelection === userSelection) {
-    showResult("Tie", computerSelection, userSelection);
     return;
   } else if (
     (userSelection === "rock" && computerSelection === "scissors") ||
     (userSelection === "paper" && computerSelection === "rock") ||
     (userSelection === "scissors" && computerSelection === "paper")
   ) {
-    showResult("Win", computerSelection, userSelection);
     return true;
   } else {
-    showResult("Lose", computerSelection, userSelection);
     return false;
   }
 }
@@ -65,7 +62,7 @@ function game() {
   let userScore = 0;
   let computerScore = 0;
 
-  for (let i = 0; i < ROUNDS; i++) {
+  gameLoop: for (let i = 0; i < ROUNDS; i++) {
     let currentRound = i + 1;
     const userChoice = getUserChoice();
     const computerChoice = getComputerChoice();
@@ -74,9 +71,15 @@ function game() {
     const userWonRound = playARound(computerChoice, userChoice);
 
     if (userWonRound) {
+      showResult("Win", computerChoice, userChoice);
       userScore++;
     } else if (userWonRound === false) {
+      showResult("Lose", computerChoice, userChoice);
       computerScore++;
+    } else {
+      showResult("Tie", computerChoice, userChoice);
+      showScore(currentRound, userScore, computerScore);
+      continue gameLoop;
     }
 
     showScore(currentRound, userScore, computerScore);
