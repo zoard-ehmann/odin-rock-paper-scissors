@@ -18,6 +18,10 @@ Check the [algorithm](algorithm/algorithm.md) page for further information about
 
 ![Console version](screenshots/console_version.png)
 
+### GUI
+
+TODO
+
 ## Usage
 
 1. Copy the absolute path of the _index.html_ file to the browser
@@ -25,5 +29,5 @@ Check the [algorithm](algorithm/algorithm.md) page for further information about
 
 ## Roadmap
 
-1. Create a console version of the game with JS
+1. ✔ Create a console version of the game with JS
 2. Create a GUI for the console version with HTML and CSS

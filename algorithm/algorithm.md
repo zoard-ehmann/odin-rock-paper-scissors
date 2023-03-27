@@ -1,21 +1,19 @@
 # Algorithm: Rock, Paper, Scissors
 
-## Console version
+## Plan
 
-### Plan
-
-#### UI
+### UI
 
 - Does the program will have a UI?
-  - The program will have a console interface at first.
+  - The program will have a GUI.
 - How will it look like?
-  - The console interface won't have graphics, it will contain only textual information.
+  - 3 symbols layed out in a row, after choosing one of them, the result will be shown.
 - What functionality will it has?
   - The interface will accept a user input that refers to the chosen symbol.
-  - The interface will have a replay functionality.
-  - The interface will have a counter that keeps track of the score.
+  - The interface will have a replay functionality after a whole game.
+  - The interface will have a round-level score table.
 
-#### Inputs
+### Inputs
 
 - What inputs the program will have?
   - A string that will select the chosen symbol: _String_
@@ -24,12 +22,14 @@
   - The program will get the string input from the user in each turn.
   - The program will get the replay value from the user after declaring the winner.
 
-#### Outputs
+### Outputs
 
 - What will be the desired output?
-  - The desired output will be a result (from player perspective): win, lose or tie.
+  - Each round will have an output about the result of the round.
+  - A score table that tracks the scores.
+  - The final output will be the overall result.
 
-#### Steps
+### Steps
 
 - What will be the steps necessary to return the desired output based on the inputs?
   1. Get the user input
@@ -38,22 +38,21 @@
   4. Determine the result
   5. Inform the user about the result
 
-### Pseudocode
+## Pseudocode
 
 - Start the main loop
   - Start the game
     - Initialize score tracking for player and computer
-    - Start a loop that continues for either: 5 rounds OR 3 scores (for player or computer)
-      - Prompt for a player input, validate it, and store it in a variable
+    - Start a loop that continues for 5 points for either the player or the computer
+      - Wait for a player input, and store it in a variable
       - Generate a random choice for the computer and store it in a variable
       - Check the player input against the computer chosen value
       - Determine the result from player perspective: win, lose or tie
         - Inform the player about the result
         - Update the scores
-        - Show the score table
     - Inform the player about the overall result
-  - Prompt the player for replay
+  - Provide a button for replay
 
-### Flowchart
+## Flowchart
 
 ![Algorithm flowchart](algorithm.drawio.png)
