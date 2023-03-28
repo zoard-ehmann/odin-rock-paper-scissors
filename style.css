@@ -23,7 +23,7 @@ h1 {
   font-size: 7rem;
   font-weight: 900;
   text-transform: uppercase;
-  margin: 96px 0 48px;
+  margin: 48px 0;
 }
 
 .subtitle {
@@ -49,13 +49,15 @@ h1 {
 }
 
 .score {
-  text-align: left;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  font-weight: 900;
   display: flex;
   justify-content: center;
-  gap: 16px;
-  font-size: 1.75rem;
+  gap: 64px;
 }
 
-.score p:first-child {
-  margin-bottom: 8px;
+.score__point {
+  margin-top: 16px;
+  font-size: 3.5rem;
 }
