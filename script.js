@@ -1,6 +1,6 @@
 "use strict";
 
-const ROUNDS = 5;
+const WIN = 5;
 
 function getComputerChoice() {
   const computerChoice = Math.floor(Math.random() * 3) + 1;
@@ -61,9 +61,10 @@ function playARound(computerSelection, userSelection) {
 function game() {
   let userScore = 0;
   let computerScore = 0;
+  let currentRound = 0;
 
-  gameLoop: for (let i = 0; i < ROUNDS; i++) {
-    let currentRound = i + 1;
+  gameLoop: while (true) {
+    currentRound++;
     const userChoice = getUserChoice();
     const computerChoice = getComputerChoice();
 
@@ -84,20 +85,10 @@ function game() {
 
     showScore(currentRound, userScore, computerScore);
 
-    if (userScore === 3 || computerScore === 3 || currentRound === ROUNDS) {
-      if (userScore > computerScore) {
-        return "Congrats, you've won!";
-      } else if (userScore < computerScore) {
-        return "Too bad, you lose...";
-      } else {
-        return "It's a tie.";
-      }
+    if (userScore === WIN) {
+      return "Congrats, you've won!";
+    } else if (computerScore === WIN) {
+      return "Too bad, you lose...";
     }
   }
-}
-
-while (true) {
-  console.clear();
-  console.log(game());
-  if (!confirm("Would you like to play again?")) break;
 }
