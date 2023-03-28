@@ -1,0 +1,61 @@
+@import "reset.css";
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: rgb(66, 66, 66);
+  color: rgb(255, 255, 255);
+  font-family: "Montserrat", sans-serif;
+  font-style: italic;
+  text-align: center;
+}
+
+h1 {
+  color: rgb(255, 136, 0);
+  font-size: 7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 96px 0 48px;
+}
+
+.subtitle {
+  font-size: 3.5rem;
+}
+
+.symbols {
+  padding: 64px 0;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  gap: 128px;
+}
+
+.symbol {
+  font-size: 20rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.symbol:hover {
+  transform: scale(1.1);
+}
+
+.score {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: 1.75rem;
+}
+
+.score p:first-child {
+  margin-bottom: 8px;
+}
