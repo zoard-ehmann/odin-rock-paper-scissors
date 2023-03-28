@@ -44,6 +44,11 @@ function showScore(round, userScore, computerScore) {
   });
 }
 
+function updateScore(player, score) {
+  const scoreField = document.querySelector(`[data-score="${player}"]`);
+  scoreField.textContent = score;
+}
+
 function playARound(computerSelection, userSelection) {
   if (computerSelection === userSelection) {
     return;
@@ -74,9 +79,11 @@ function game() {
     if (userWonRound) {
       showResult("Win", computerChoice, userChoice);
       userScore++;
+      updateScore("player", userScore);
     } else if (userWonRound === false) {
       showResult("Lose", computerChoice, userChoice);
       computerScore++;
+      updateScore("computer", computerScore);
     } else {
       showResult("Tie", computerChoice, userChoice);
       showScore(currentRound, userScore, computerScore);
