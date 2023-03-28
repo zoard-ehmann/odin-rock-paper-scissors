@@ -4,8 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <title>Rock, Paper, Scissors</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Rock, Paper, Scissors</h1>
+    <p class="subtitle">Up to 5 points...</p>
+    <div class="symbols">
+      <div class="symbol" id="rock">✊</div>
+      <div class="symbol" id="paper">🤚</div>
+      <div class="symbol" id="scissors">🖖</div>
+    </div>
+    <div class="score">
+      <div class="score__labels">
+        <p>Player:</p>
+        <p>Computer:</p>
+      </div>
+      <div class="score__points">
+        <p data-player="player">0</p>
+        <p data-player="computer">0</p>
+      </div>
+    </div>
+  </body>
 </html>
