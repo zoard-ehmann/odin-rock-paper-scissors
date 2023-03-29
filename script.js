@@ -37,14 +37,6 @@
     );
   }
 
-  function showScore(round, userScore, computerScore) {
-    console.log(`Round ${round}`);
-    console.table({
-      Player: userScore,
-      Computer: computerScore,
-    });
-  }
-
   function updateScore(player, score) {
     const scoreField = document.querySelector(`[data-score="${player}"]`);
     scoreField.textContent = score;
@@ -72,9 +64,13 @@
 
     const userWonRound = playARound(computerChoice, userChoice);
 
-    console.log("user: " + userChoice);
-    console.log("comp: " + computerChoice);
-    console.log("win: " + userWonRound);
+    if (userWonRound) {
+      userScore++;
+      updateScore("player", userScore);
+    } else if (userWonRound === false) {
+      computerScore++;
+      updateScore("computer", computerScore);
+    }
   }
 
   let userScore = 0;
