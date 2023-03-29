@@ -63,7 +63,6 @@
   function handleUserChoice(e) {
     const userChoice = e.target.id;
     const computerChoice = getComputerChoice();
-
     const userWonRound = playARound(computerChoice, userChoice);
 
     if (userWonRound === undefined) {
