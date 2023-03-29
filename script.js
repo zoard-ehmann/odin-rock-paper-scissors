@@ -12,7 +12,7 @@
 
   function setClickListener(state) {
     const symbols = document.querySelectorAll(".symbol");
-    
+
     for (let symbol of symbols) {
       if (state) {
         symbol.addEventListener("click", handleUserChoice);
@@ -41,6 +41,12 @@
     subtitle.textContent = `${userSelection.toUpperCase()} VS ${computerSelection.toUpperCase()}. It's a ${result}!`;
   }
 
+  function showGameResult(msg) {
+    const subtitle = document.querySelector(".subtitle");
+
+    subtitle.textContent = msg;
+  }
+
   function updateScore(player, score) {
     const scoreField = document.querySelector(`[data-score="${player}"]`);
     scoreField.textContent = score;
@@ -58,6 +64,18 @@
     } else {
       return false;
     }
+  }
+
+  function checkWin() {
+    if (scores.userScore === WIN) {
+      showGameResult("Congrats, you've won!");
+    } else if (scores.computerScore === WIN) {
+      showGameResult("Too bad, you lose...");
+    } else {
+      return;
+    }
+
+    setClickListener(false);
   }
 
   function handleUserChoice(e) {
@@ -78,6 +96,8 @@
       updateScore("computer", scores.computerScore);
       showRoundResult("LOSE", computerChoice, userChoice);
     }
+
+    checkWin();
   }
 
   let scores = initScores();
