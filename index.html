@@ -15,23 +15,27 @@
     <title>Rock, Paper, Scissors</title>
   </head>
   <body>
-    <h1>Rock, Paper, Scissors</h1>
-    <p class="subtitle"></p>
-    <p class="replay hidden" id="replay">Play again?</p>
-    <div class="symbols">
-      <div class="symbol" id="rock">✊</div>
-      <div class="symbol" id="paper">🤚</div>
-      <div class="symbol" id="scissors">🖖</div>
+    <div>
+      <h1>Rock, Paper, Scissors</h1>
+      <p class="subtitle"></p>
+      <div class="symbols">
+        <div class="symbol" id="rock">✊</div>
+        <div class="symbol" id="paper">🤚</div>
+        <div class="symbol" id="scissors">🖖</div>
+      </div>
+      <div class="score">
+        <div>
+          <p>Player</p>
+          <p class="score__point" data-score="player"></p>
+        </div>
+        <div>
+          <p>Computer</p>
+          <p class="score__point" data-score="computer"></p>
+        </div>
+      </div>
     </div>
-    <div class="score">
-      <div>
-        <p>Player</p>
-        <p class="score__point" data-score="player"></p>
-      </div>
-      <div>
-        <p>Computer</p>
-        <p class="score__point" data-score="computer"></p>
-      </div>
+    <div class="replay">
+      <p class="replay__button" id="replay">Play again?</p>
     </div>
   </body>
 </html>
