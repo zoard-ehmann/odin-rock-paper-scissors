@@ -54,7 +54,7 @@
     if (gameData.userScore === WIN) {
       showMessage("Congrats, you've won!");
     } else if (gameData.computerScore === WIN) {
-      showMessage("Too bad, you lose...");
+      showMessage("Too bad, you've lost...");
     } else {
       return;
     }
