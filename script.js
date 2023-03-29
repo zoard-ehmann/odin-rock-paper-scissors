@@ -51,6 +51,7 @@
 
   function updateScore(player, score) {
     const scoreField = document.querySelector(`[data-score="${player}"]`);
+
     scoreField.textContent = score;
   }
 
