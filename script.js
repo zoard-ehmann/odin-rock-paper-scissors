@@ -17,9 +17,9 @@
   }
 
   function showResult(result, computerSelection, userSelection) {
-    console.log(
-      `${result}:\nPlayer - ${userSelection}\nComputer - ${computerSelection}`
-    );
+    const subtitle = document.querySelector(".subtitle");
+
+    subtitle.textContent = `${userSelection.toUpperCase()} VS ${computerSelection.toUpperCase()}. It's a ${result}!`;
   }
 
   function updateScore(player, score) {
@@ -52,9 +52,14 @@
     if (userWonRound) {
       userScore++;
       updateScore("player", userScore);
+      showResult("WIN", computerChoice, userChoice);
     } else if (userWonRound === false) {
       computerScore++;
       updateScore("computer", computerScore);
+      showResult("LOSE", computerChoice, userChoice);
+    } else {
+      showResult("TIE", computerChoice, userChoice);
+      return;
     }
   }
 
