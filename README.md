@@ -14,20 +14,16 @@ Check the [algorithm](algorithm/algorithm.md) page for further information about
 
 ## Visuals
 
-### Console version
-
-![Console version](screenshots/console_version.png)
-
-### GUI
-
-TODO
+![Rock, Paper, Scissors GUI](./screenshots/gui_version.png)
 
 ## Usage
 
 1. Copy the absolute path of the _index.html_ file to the browser
-2. Open the JavaScript developer console in the browser in order to see the outputs
+2. Choose your symbol
+   - First who gets 5 points, wins
+3. Click on _Play again?_ when game stops and you would like to play again
 
 ## Roadmap
 
-1. ✔ Create a console version of the game with JS
-2. Create a GUI for the console version with HTML and CSS
+1. Create a console version of the game with JS ✔
+2. Create a GUI for the console version with HTML and CSS ✔
