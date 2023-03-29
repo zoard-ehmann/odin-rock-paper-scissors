@@ -35,7 +35,7 @@
     }
   }
 
-  function showResult(result, computerSelection, userSelection) {
+  function showRoundResult(result, computerSelection, userSelection) {
     const subtitle = document.querySelector(".subtitle");
 
     subtitle.textContent = `${userSelection.toUpperCase()} VS ${computerSelection.toUpperCase()}. It's a ${result}!`;
@@ -67,16 +67,16 @@
     const userWonRound = playARound(computerChoice, userChoice);
 
     if (userWonRound === undefined) {
-      showResult("TIE", computerChoice, userChoice);
+      showRoundResult("TIE", computerChoice, userChoice);
       return;
     } else if (userWonRound) {
       scores.userScore++;
       updateScore("player", scores.userScore);
-      showResult("WIN", computerChoice, userChoice);
+      showRoundResult("WIN", computerChoice, userChoice);
     } else {
       scores.computerScore++;
       updateScore("computer", scores.computerScore);
-      showResult("LOSE", computerChoice, userChoice);
+      showRoundResult("LOSE", computerChoice, userChoice);
     }
   }
 
