@@ -82,11 +82,11 @@
     checkWin();
   }
 
-  function setClickListener(state) {
+  function setClickListener(active) {
     const symbols = document.querySelectorAll(".symbol");
 
     for (let symbol of symbols) {
-      if (state) {
+      if (active) {
         symbol.classList.remove("transform--off");
         symbol.addEventListener("click", handleUserChoice);
       } else {
@@ -102,10 +102,10 @@
     showMessage("Up to 5 points...");
   }
 
-  function initGame(state) {
+  function initGame(startGame) {
     const replay = document.querySelector(".replay");
 
-    if (state) {
+    if (startGame) {
       initUI();
       setClickListener(true);
       replay.classList.add("hidden");
