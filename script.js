@@ -12,6 +12,7 @@
 
   function setClickListener(state) {
     const symbols = document.querySelectorAll(".symbol");
+    
     for (let symbol of symbols) {
       if (state) {
         symbol.addEventListener("click", handleUserChoice);
@@ -80,9 +81,5 @@
   }
 
   let scores = initScores();
-
-  const symbols = document.querySelectorAll(".symbol");
-  for (let symbol of symbols) {
-    symbol.addEventListener("click", handleUserChoice);
-  }
+  setClickListener(true);
 })();
