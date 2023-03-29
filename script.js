@@ -78,6 +78,27 @@
     }
 
     setClickListener(false);
+
+    const replay = document.querySelector(".replay");
+
+    replay.classList.remove("hidden");
+    replay.addEventListener(
+      "click",
+      (e) => {
+        if (e.target.id === "replay") {
+          // TODO: Move out game initialization to its own function and rename functions accordingly
+          replay.classList.add("hidden");
+          scores = initScores();
+          updateScore("player", 0);
+          updateScore("computer", 0);
+          showGameResult("Up to 5 points...");
+          setClickListener(true);
+        }
+      },
+      {
+        once: true,
+      }
+    );
   }
 
   function handleUserChoice(e) {

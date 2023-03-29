@@ -30,6 +30,16 @@ h1 {
   font-size: 3.5rem;
 }
 
+.replay {
+  margin-top: 32px;
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
 .symbols {
   padding: 64px 0;
   font-style: normal;
