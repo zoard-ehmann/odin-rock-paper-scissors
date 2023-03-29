@@ -16,21 +16,6 @@
     }
   }
 
-  function getUserChoice() {
-    while (true) {
-      let userChoice = prompt(
-        "Enter your choice: rock, paper, scissors"
-      ).toLowerCase();
-      if (
-        userChoice === "rock" ||
-        userChoice === "paper" ||
-        userChoice === "scissors"
-      ) {
-        return userChoice;
-      }
-    }
-  }
-
   function showResult(result, computerSelection, userSelection) {
     console.log(
       `${result}:\nPlayer - ${userSelection}\nComputer - ${computerSelection}`
