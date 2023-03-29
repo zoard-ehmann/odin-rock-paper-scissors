@@ -96,15 +96,19 @@
     }
   }
 
+  function initUI() {
+    updateScore("player", 0);
+    updateScore("computer", 0);
+    showMessage("Up to 5 points...");
+  }
+
   function initGame(state) {
     const replay = document.querySelector(".replay");
 
     if (state) {
-      replay.classList.add("hidden");
-      updateScore("player", 0);
-      updateScore("computer", 0);
-      showMessage("Up to 5 points...");
+      initUI();
       setClickListener(true);
+      replay.classList.add("hidden");
       return {
         userScore: 0,
         computerScore: 0,
