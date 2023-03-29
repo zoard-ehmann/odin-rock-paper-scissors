@@ -10,6 +10,17 @@
     };
   }
 
+  function setClickListener(state) {
+    const symbols = document.querySelectorAll(".symbol");
+    for (let symbol of symbols) {
+      if (state) {
+        symbol.addEventListener("click", handleUserChoice);
+      } else {
+        symbol.removeEventListener("click", handleUserChoice);
+      }
+    }
+  }
+
   function getComputerChoice() {
     const computerChoice = Math.floor(Math.random() * 3) + 1;
 
