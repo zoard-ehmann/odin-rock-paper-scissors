@@ -64,40 +64,26 @@
     }
   }
 
-  function game() {
-    let userScore = 0;
-    let computerScore = 0;
-    let currentRound = 0;
+  function handleUserChoice(e) {
+    const userChoice = e.target.id;
+    const computerChoice = getComputerChoice();
 
-    gameLoop: while (true) {
-      currentRound++;
-      const userChoice = getUserChoice();
-      const computerChoice = getComputerChoice();
+    currentRound++;
 
-      console.clear();
-      const userWonRound = playARound(computerChoice, userChoice);
+    const userWonRound = playARound(computerChoice, userChoice);
 
-      if (userWonRound) {
-        showResult("Win", computerChoice, userChoice);
-        userScore++;
-        updateScore("player", userScore);
-      } else if (userWonRound === false) {
-        showResult("Lose", computerChoice, userChoice);
-        computerScore++;
-        updateScore("computer", computerScore);
-      } else {
-        showResult("Tie", computerChoice, userChoice);
-        showScore(currentRound, userScore, computerScore);
-        continue gameLoop;
-      }
+    console.log("user: " + userChoice);
+    console.log("comp: " + computerChoice);
+    console.log("win: " + userWonRound);
+  }
 
-      showScore(currentRound, userScore, computerScore);
+  let userScore = 0;
+  let computerScore = 0;
+  let currentRound = 0;
 
-      if (userScore === WIN) {
-        return "Congrats, you've won!";
-      } else if (computerScore === WIN) {
-        return "Too bad, you lose...";
-      }
-    }
+  const symbols = document.querySelectorAll(".symbol");
+
+  for (let symbol of symbols) {
+    symbol.addEventListener("click", handleUserChoice);
   }
 })();
