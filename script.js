@@ -3,27 +3,6 @@
 
   const WIN = 5;
 
-  function initScores() {
-    return {
-      userScore: 0,
-      computerScore: 0,
-    };
-  }
-
-  function setClickListener(state) {
-    const symbols = document.querySelectorAll(".symbol");
-
-    for (let symbol of symbols) {
-      if (state) {
-        symbol.classList.remove("transform--off");
-        symbol.addEventListener("click", handleUserChoice);
-      } else {
-        symbol.classList.add("transform--off");
-        symbol.removeEventListener("click", handleUserChoice);
-      }
-    }
-  }
-
   function getComputerChoice() {
     const computerChoice = Math.floor(Math.random() * 3) + 1;
 
@@ -78,28 +57,7 @@
       return;
     }
 
-    setClickListener(false);
-
-    const replay = document.querySelector(".replay");
-
-    replay.classList.remove("hidden");
-    replay.addEventListener(
-      "click",
-      (e) => {
-        if (e.target.id === "replay") {
-          // TODO: Move out game initialization to its own function and rename functions accordingly
-          replay.classList.add("hidden");
-          scores = initScores();
-          updateScore("player", 0);
-          updateScore("computer", 0);
-          showMessage("Up to 5 points...");
-          setClickListener(true);
-        }
-      },
-      {
-        once: true,
-      }
-    );
+    initGame(false);
   }
 
   function handleUserChoice(e) {
@@ -124,6 +82,49 @@
     checkWin();
   }
 
-  let scores = initScores();
-  setClickListener(true);
+  function setClickListener(state) {
+    const symbols = document.querySelectorAll(".symbol");
+
+    for (let symbol of symbols) {
+      if (state) {
+        symbol.classList.remove("transform--off");
+        symbol.addEventListener("click", handleUserChoice);
+      } else {
+        symbol.classList.add("transform--off");
+        symbol.removeEventListener("click", handleUserChoice);
+      }
+    }
+  }
+
+  function initGame(state) {
+    const replay = document.querySelector(".replay");
+
+    if (state) {
+      replay.classList.add("hidden");
+      updateScore("player", 0);
+      updateScore("computer", 0);
+      showMessage("Up to 5 points...");
+      setClickListener(true);
+      return {
+        userScore: 0,
+        computerScore: 0,
+      };
+    } else {
+      setClickListener(false);
+      replay.classList.remove("hidden");
+      replay.addEventListener(
+        "click",
+        (e) => {
+          if (e.target.id === "replay") {
+            scores = initGame(true);
+          }
+        },
+        {
+          once: true,
+        }
+      );
+    }
+  }
+
+  let scores = initGame(true);
 })();
