@@ -24,7 +24,9 @@
 
   function showRoundResult(result, computerSelection, userSelection) {
     showMessage(
-      `${userSelection.toUpperCase()} VS ${computerSelection.toUpperCase()}. It's a ${result}!`
+      `Round #${
+        gameData.round
+      } - ${userSelection.toUpperCase()} VS ${computerSelection.toUpperCase()}. It's a ${result}!`
     );
   }
 
@@ -49,9 +51,9 @@
   }
 
   function checkWin() {
-    if (scores.userScore === WIN) {
+    if (gameData.userScore === WIN) {
       showMessage("Congrats, you've won!");
-    } else if (scores.computerScore === WIN) {
+    } else if (gameData.computerScore === WIN) {
       showMessage("Too bad, you lose...");
     } else {
       return;
@@ -65,16 +67,18 @@
     const computerChoice = getComputerChoice();
     const userWonRound = playARound(computerChoice, userChoice);
 
+    gameData.round++;
+
     if (userWonRound === undefined) {
       showRoundResult("TIE", computerChoice, userChoice);
       return;
     } else if (userWonRound) {
-      scores.userScore++;
-      updateScore("player", scores.userScore);
+      gameData.userScore++;
+      updateScore("player", gameData.userScore);
       showRoundResult("WIN", computerChoice, userChoice);
     } else {
-      scores.computerScore++;
-      updateScore("computer", scores.computerScore);
+      gameData.computerScore++;
+      updateScore("computer", gameData.computerScore);
       showRoundResult("LOSE", computerChoice, userChoice);
     }
 
@@ -109,6 +113,7 @@
       setClickListener(true);
       replay.classList.add("hidden");
       return {
+        round: 0,
         userScore: 0,
         computerScore: 0,
       };
@@ -119,7 +124,7 @@
         "click",
         (e) => {
           if (e.target.id === "replay") {
-            scores = initGame(true);
+            gameData = initGame(true);
           }
         },
         {
@@ -129,5 +134,5 @@
     }
   }
 
-  let scores = initGame(true);
+  let gameData = initGame(true);
 })();
