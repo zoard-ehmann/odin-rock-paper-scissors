@@ -37,16 +37,16 @@
     }
   }
 
-  function showRoundResult(result, computerSelection, userSelection) {
-    const subtitle = document.querySelector(".subtitle");
-
-    subtitle.textContent = `${userSelection.toUpperCase()} VS ${computerSelection.toUpperCase()}. It's a ${result}!`;
-  }
-
-  function showGameResult(msg) {
+  function showMessage(msg) {
     const subtitle = document.querySelector(".subtitle");
 
     subtitle.textContent = msg;
+  }
+
+  function showRoundResult(result, computerSelection, userSelection) {
+    showMessage(
+      `${userSelection.toUpperCase()} VS ${computerSelection.toUpperCase()}. It's a ${result}!`
+    );
   }
 
   function updateScore(player, score) {
@@ -70,9 +70,9 @@
 
   function checkWin() {
     if (scores.userScore === WIN) {
-      showGameResult("Congrats, you've won!");
+      showMessage("Congrats, you've won!");
     } else if (scores.computerScore === WIN) {
-      showGameResult("Too bad, you lose...");
+      showMessage("Too bad, you lose...");
     } else {
       return;
     }
@@ -91,7 +91,7 @@
           scores = initScores();
           updateScore("player", 0);
           updateScore("computer", 0);
-          showGameResult("Up to 5 points...");
+          showMessage("Up to 5 points...");
           setClickListener(true);
         }
       },
