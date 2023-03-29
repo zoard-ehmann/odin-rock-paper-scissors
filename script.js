@@ -3,6 +3,13 @@
 
   const WIN = 5;
 
+  function initScores() {
+    return {
+      userScore: 0,
+      computerScore: 0,
+    };
+  }
+
   function getComputerChoice() {
     const computerChoice = Math.floor(Math.random() * 3) + 1;
 
@@ -45,30 +52,25 @@
     const userChoice = e.target.id;
     const computerChoice = getComputerChoice();
 
-    currentRound++;
-
     const userWonRound = playARound(computerChoice, userChoice);
 
-    if (userWonRound) {
-      userScore++;
-      updateScore("player", userScore);
-      showResult("WIN", computerChoice, userChoice);
-    } else if (userWonRound === false) {
-      computerScore++;
-      updateScore("computer", computerScore);
-      showResult("LOSE", computerChoice, userChoice);
-    } else {
+    if (userWonRound === undefined) {
       showResult("TIE", computerChoice, userChoice);
       return;
+    } else if (userWonRound) {
+      scores.userScore++;
+      updateScore("player", scores.userScore);
+      showResult("WIN", computerChoice, userChoice);
+    } else {
+      scores.computerScore++;
+      updateScore("computer", scores.computerScore);
+      showResult("LOSE", computerChoice, userChoice);
     }
   }
 
-  let userScore = 0;
-  let computerScore = 0;
-  let currentRound = 0;
+  let scores = initScores();
 
   const symbols = document.querySelectorAll(".symbol");
-
   for (let symbol of symbols) {
     symbol.addEventListener("click", handleUserChoice);
   }
