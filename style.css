@@ -48,6 +48,10 @@ h1 {
   transform: scale(1.1);
 }
 
+.transform--off:hover {
+  transform: none;
+}
+
 .score {
   font-size: 1.75rem;
   text-transform: uppercase;

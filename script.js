@@ -15,8 +15,10 @@
 
     for (let symbol of symbols) {
       if (state) {
+        symbol.classList.remove("transform--off");
         symbol.addEventListener("click", handleUserChoice);
       } else {
+        symbol.classList.add("transform--off");
         symbol.removeEventListener("click", handleUserChoice);
       }
     }
