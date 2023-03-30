@@ -3,6 +3,53 @@
 (function () {
   const WIN = 5;
 
+  // INFO: helper functions
+
+  function setClickListener(active) {
+    const playerSymbols = document.querySelectorAll(".symbols__player");
+
+    for (let symbol of playerSymbols) {
+      if (active) {
+        symbol.classList.remove("transform--off");
+        symbol.addEventListener("click", handleUserChoice);
+      } else {
+        symbol.classList.add("transform--off");
+        symbol.removeEventListener("click", handleUserChoice);
+      }
+    }
+  }
+
+  function initGame(startGame) {
+    const replay = document.querySelector(".replay");
+
+    if (startGame) {
+      initUI();
+      setClickListener(true);
+      replay.classList.add("hidden");
+      return {
+        round: 0,
+        userScore: 0,
+        computerScore: 0,
+      };
+    } else {
+      setClickListener(false);
+      replay.classList.remove("hidden");
+      replay.addEventListener(
+        "click",
+        (e) => {
+          if (e.target.id === "replay") {
+            gameData = initGame(true);
+          }
+        },
+        {
+          once: true,
+        }
+      );
+    }
+  }
+
+  // INFO: game logic related functions
+
   function getComputerChoice() {
     const computerChoice = Math.floor(Math.random() * 3) + 1;
 
@@ -14,22 +61,6 @@
       case 3:
         return "scissors";
     }
-  }
-
-  function showMessage(msg) {
-    const subtitle = document.querySelector(".subtitle");
-
-    subtitle.textContent = msg;
-  }
-
-  function showRoundResult(result, emoji) {
-    showMessage(`Round #${gameData.round} // ${result} ${emoji}`);
-  }
-
-  function updateScore(player, score) {
-    const scoreField = document.querySelector(`[data-score="${player}"]`);
-
-    scoreField.textContent = score;
   }
 
   function playARound(computerSelection, userSelection) {
@@ -56,6 +87,52 @@
     }
 
     initGame(false);
+  }
+
+  function handleUserChoice(e) {
+    const userChoice = e.target.dataset.symbol;
+    const computerChoice = getComputerChoice();
+    const userWonRound = playARound(computerChoice, userChoice);
+
+    gameData.round++;
+    setSymbols(userChoice, computerChoice);
+
+    if (userWonRound === undefined) {
+      showRoundResult("TIE", "⚠️");
+    } else if (userWonRound) {
+      gameData.userScore++;
+      updateScore("player", gameData.userScore);
+      showRoundResult("WIN", "✅");
+    } else {
+      gameData.computerScore++;
+      updateScore("computer", gameData.computerScore);
+      showRoundResult("LOSE", "❌");
+    }
+
+    if (checkWin() === false) {
+      setTimeout(() => {
+        resetSymbols();
+      }, 2000);
+    }
+  }
+
+  // INFO: UI related functions
+
+  function initUI() {
+    resetSymbols();
+    updateScore("player", 0);
+    updateScore("computer", 0);
+    showMessage("Up to 5 points...");
+  }
+
+  function showMessage(msg) {
+    const subtitle = document.querySelector(".subtitle");
+
+    subtitle.textContent = msg;
+  }
+
+  function showRoundResult(result, emoji) {
+    showMessage(`Round #${gameData.round} // ${result} ${emoji}`);
   }
 
   function setSymbols(userChoice, computerChoice) {
@@ -90,82 +167,13 @@
     });
   }
 
-  function handleUserChoice(e) {
-    const userChoice = e.target.dataset.symbol;
-    const computerChoice = getComputerChoice();
-    const userWonRound = playARound(computerChoice, userChoice);
+  function updateScore(player, score) {
+    const scoreField = document.querySelector(`[data-score="${player}"]`);
 
-    gameData.round++;
-    setSymbols(userChoice, computerChoice);
-
-    if (userWonRound === undefined) {
-      showRoundResult("TIE", "⚠️");
-    } else if (userWonRound) {
-      gameData.userScore++;
-      updateScore("player", gameData.userScore);
-      showRoundResult("WIN", "✅");
-    } else {
-      gameData.computerScore++;
-      updateScore("computer", gameData.computerScore);
-      showRoundResult("LOSE", "❌");
-    }
-
-    if (checkWin() === false) {
-      setTimeout(() => {
-        resetSymbols();
-      }, 2000);
-    }
+    scoreField.textContent = score;
   }
 
-  function setClickListener(active) {
-    const playerSymbols = document.querySelectorAll(".symbols__player");
-
-    for (let symbol of playerSymbols) {
-      if (active) {
-        symbol.classList.remove("transform--off");
-        symbol.addEventListener("click", handleUserChoice);
-      } else {
-        symbol.classList.add("transform--off");
-        symbol.removeEventListener("click", handleUserChoice);
-      }
-    }
-  }
-
-  function initUI() {
-    resetSymbols();
-    updateScore("player", 0);
-    updateScore("computer", 0);
-    showMessage("Up to 5 points...");
-  }
-
-  function initGame(startGame) {
-    const replay = document.querySelector(".replay");
-
-    if (startGame) {
-      initUI();
-      setClickListener(true);
-      replay.classList.add("hidden");
-      return {
-        round: 0,
-        userScore: 0,
-        computerScore: 0,
-      };
-    } else {
-      setClickListener(false);
-      replay.classList.remove("hidden");
-      replay.addEventListener(
-        "click",
-        (e) => {
-          if (e.target.id === "replay") {
-            gameData = initGame(true);
-          }
-        },
-        {
-          once: true,
-        }
-      );
-    }
-  }
+  // INFO: entry point
 
   let gameData = initGame(true);
 })();
