@@ -58,18 +58,19 @@ h1 {
   gap: 128px;
 }
 
-.symbol {
+.symbols > div {
   font-size: 20rem;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 }
 
-.symbol:hover {
+.symbols__player:hover {
   transform: scale(1.1);
 }
 
 .transform--off:hover {
   transform: none;
+  transition: none;
 }
 
 .score {

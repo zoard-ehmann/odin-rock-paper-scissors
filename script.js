@@ -1,6 +1,6 @@
-(function () {
-  "use strict";
+"use strict";
 
+(function () {
   const WIN = 5;
 
   function getComputerChoice() {
@@ -22,12 +22,8 @@
     subtitle.textContent = msg;
   }
 
-  function showRoundResult(result, computerSelection, userSelection) {
-    showMessage(
-      `Round #${
-        gameData.round
-      } - ${userSelection.toUpperCase()} VS ${computerSelection.toUpperCase()}. It's a ${result}!`
-    );
+  function showRoundResult(result, emoji) {
+    showMessage(`Round #${gameData.round} // ${result} ${emoji}`);
   }
 
   function updateScore(player, score) {
@@ -56,39 +52,75 @@
     } else if (gameData.computerScore === WIN) {
       showMessage("Too bad, you've lost...");
     } else {
-      return;
+      return false;
     }
 
     initGame(false);
   }
 
+  function setSymbols(userChoice, computerChoice) {
+    const playerSymbols = document.querySelectorAll(".symbols__player");
+    const computerSymbols = document.querySelectorAll(".symbols__computer");
+
+    setClickListener(false);
+
+    playerSymbols.forEach((symbol) => {
+      if (symbol.dataset.symbol !== userChoice)
+        symbol.classList.toggle("hidden");
+    });
+
+    computerSymbols.forEach((symbol) => {
+      if (symbol.dataset.symbol === computerChoice)
+        symbol.classList.toggle("hidden");
+    });
+  }
+
+  function resetSymbols() {
+    const playerSymbols = document.querySelectorAll(".symbols__player");
+    const computerSymbols = document.querySelectorAll(".symbols__computer");
+
+    setClickListener(true);
+
+    playerSymbols.forEach((symbol) => {
+      symbol.classList.remove("hidden");
+    });
+
+    computerSymbols.forEach((symbol) => {
+      symbol.classList.add("hidden");
+    });
+  }
+
   function handleUserChoice(e) {
-    const userChoice = e.target.id;
+    const userChoice = e.target.dataset.symbol;
     const computerChoice = getComputerChoice();
     const userWonRound = playARound(computerChoice, userChoice);
 
     gameData.round++;
+    setSymbols(userChoice, computerChoice);
 
     if (userWonRound === undefined) {
-      showRoundResult("TIE", computerChoice, userChoice);
-      return;
+      showRoundResult("TIE", "⚠️");
     } else if (userWonRound) {
       gameData.userScore++;
       updateScore("player", gameData.userScore);
-      showRoundResult("WIN", computerChoice, userChoice);
+      showRoundResult("WIN", "✅");
     } else {
       gameData.computerScore++;
       updateScore("computer", gameData.computerScore);
-      showRoundResult("LOSE", computerChoice, userChoice);
+      showRoundResult("LOSE", "❌");
     }
 
-    checkWin();
+    if (checkWin() === false) {
+      setTimeout(() => {
+        resetSymbols();
+      }, 2000);
+    }
   }
 
   function setClickListener(active) {
-    const symbols = document.querySelectorAll(".symbol");
+    const playerSymbols = document.querySelectorAll(".symbols__player");
 
-    for (let symbol of symbols) {
+    for (let symbol of playerSymbols) {
       if (active) {
         symbol.classList.remove("transform--off");
         symbol.addEventListener("click", handleUserChoice);
@@ -100,6 +132,7 @@
   }
 
   function initUI() {
+    resetSymbols();
     updateScore("player", 0);
     updateScore("computer", 0);
     showMessage("Up to 5 points...");
