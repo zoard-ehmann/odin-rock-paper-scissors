@@ -173,7 +173,15 @@
     scoreField.textContent = score;
   }
 
+  function updateCopyright() {
+    const copyright = document.querySelector(".copyright");
+    const thisYear = new Date().getFullYear();
+
+    copyright.textContent = `${copyright.textContent}, ${thisYear}`;
+  }
+
   // INFO: entry point
 
+  updateCopyright();
   let gameData = initGame(true);
 })();

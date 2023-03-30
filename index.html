@@ -16,36 +16,41 @@
     <link rel="icon" href="./img/ze_favicon.svg" />
   </head>
   <body>
-    <div>
-      <h1>Rock, Paper, Scissors</h1>
-      <p class="subtitle"></p>
-      <div class="symbols">
-        <div class="symbols__player" data-symbol="rock">&#9994;</div>
-        <div class="symbols__player" data-symbol="paper">&#9995;</div>
-        <div class="symbols__player" data-symbol="scissors">&#128406;</div>
-        <div class="symbols__computer hidden" data-symbol="rock">
-          &#9994;&#127996;
+    <main>
+      <div>
+        <h1>Rock, Paper, Scissors</h1>
+        <p class="subtitle"></p>
+        <div class="symbols">
+          <div class="symbols__player" data-symbol="rock">&#9994;</div>
+          <div class="symbols__player" data-symbol="paper">&#9995;</div>
+          <div class="symbols__player" data-symbol="scissors">&#128406;</div>
+          <div class="symbols__computer hidden" data-symbol="rock">
+            &#9994;&#127996;
+          </div>
+          <div class="symbols__computer hidden" data-symbol="paper">
+            &#9995;&#127996;
+          </div>
+          <div class="symbols__computer hidden" data-symbol="scissors">
+            &#128406;&#127996;
+          </div>
         </div>
-        <div class="symbols__computer hidden" data-symbol="paper">
-          &#9995;&#127996;
-        </div>
-        <div class="symbols__computer hidden" data-symbol="scissors">
-          &#128406;&#127996;
+        <div class="score">
+          <div>
+            <p>Player</p>
+            <p class="score__point" data-score="player"></p>
+          </div>
+          <div>
+            <p>Computer</p>
+            <p class="score__point" data-score="computer"></p>
+          </div>
         </div>
       </div>
-      <div class="score">
-        <div>
-          <p>Player</p>
-          <p class="score__point" data-score="player"></p>
-        </div>
-        <div>
-          <p>Computer</p>
-          <p class="score__point" data-score="computer"></p>
-        </div>
+      <div class="replay">
+        <p class="replay__button" id="replay">Play again?</p>
       </div>
-    </div>
-    <div class="replay">
-      <p class="replay__button" id="replay">Play again?</p>
-    </div>
+    </main>
+    <footer>
+      <p class="copyright">Copyright © Zoard Ehmann</p>
+    </footer>
   </body>
 </html>
